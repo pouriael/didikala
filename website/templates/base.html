@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa">
+
+<html>
+    <head>
+        <title>{% block title%}{% endblock title%}</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/fontawesome.min.css" integrity="sha384-zIaWifL2YFF1qaDiAo0JFgsmasocJ/rqu7LKYH8CoBEXqGbb9eO+Xi3s6fQhgFWM" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+        <link rel='stylesheet' href='https://sachinchoolur.github.io/lightslider/dist/css/lightslider.css'>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="theme-color" content="#f7858d">
+        <meta name="msapplication-navbutton-color" content="#f7858d">
+        <meta name="apple-mobile-web-app-status-bar-style" content="#f7858d">
+        <title>didikala | Blog Page</title>
+        <!-- Font Icon -->
+        <link rel="stylesheet" href= "{% static 'assets/css/vendor/font-awesome.min.css'%}">
+        <link rel="stylesheet" href= "{% static 'assets/css/vendor/materialdesignicons.min.css'%}">
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href= "{% static 'assets/css/vendor/bootstrap.min.css'%}">
+        <!-- Plugins -->
+        <link rel="stylesheet" href= "{% static 'assets/css/vendor/bootstrap-slider.min.css'%}">
+        <link rel="stylesheet" href= "{% static 'assets/css/vendor/owl.carousel.min.css'%}">
+        <link rel="stylesheet" href= "{% static 'assets/css/vendor/jquery.horizontalmenu.css'%}">
+        <link rel="stylesheet" href= "{% static 'assets/css/vendor/jquery-stack-menu.min.css'%}">
+        <link rel="stylesheet" href= "{% static 'assets/css/vendor/fancybox.min.css'%}">
+        <link rel="stylesheet" href= "{% static 'assets/css/vendor/nice-select.css'%}">
+        <link rel="stylesheet" href= "{% static 'assets/css/vendor/nouislider.min.css'%}">
+        <!-- Main CSS File -->
+        <link rel="stylesheet" href= "{% static 'assets/css/main.css'%}">
+        <link rel="stylesheet" href= "{% static 'assets/css/colors/default.css'%}" id="colorswitch">
+        {% block head%} {% endblock head%}
+    </head>
+    <body class="main">
+        {% include "navbar.html" %}
+        {% include "messages.html" %}
+        {% block body %}{% endblock body %}
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+        {% block script %}{% endblock script %}
+        <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+        <script src="{% static 'assets/js/vendor/jquery-3.4.1.min.js'%}"></script>
+<script src="{% static 'assets/js/vendor/popper.min.js'%}"></script>
+<script src="{% static 'assets/js/vendor/bootstrap.min.js'%}"></script>
+<!-- Plugins -->
+<script src="{% static 'assets/js/vendor/bootstrap-slider.min.js'%}"></script>
+<script src="{% static 'assets/js/vendor/owl.carousel.min.js'%}"></script>
+<script src="{% static 'assets/js/vendor/owl.carousel2.thumbs.min.js'%}"></script>
+<script src="{% static 'assets/js/vendor/jquery.nicescroll.min.js'%}"></script>
+<script src="{% static 'assets/js/vendor/jquery.nice-select.min.js'%}"></script>
+<script src="{% static 'assets/js/vendor/nouislider.min.js'%}"></script>
+<script src="{% static 'assets/js/vendor/jquery.horizontalmenu.js'%}"></script>
+<script src="{% static 'assets/js/vendor/jquery-stack-menu.min.js'%}"></script>
+<script src="{% static 'assets/js/vendor/jquery.fancybox.min.js'%}"></script>
+<script src="{% static 'assets/js/vendor/countdown.min.js'%}"></script>
+<script src="{% static 'assets/js/vendor/wNumb.js'%}"></script>
+<script src="{% static 'assets/js/vendor/ResizeSensor.min.js'%}"></script>
+<script src="{% static 'assets/js/vendor/theia-sticky-sidebar.min.js'%}"></script>
+<!-- Main JS File -->
+<script src="{% static 'assets/js/main.js'%}"></script>
+    </body>
+</html>

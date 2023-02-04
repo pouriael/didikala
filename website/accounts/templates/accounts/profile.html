@@ -1,0 +1,457 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load jformat%}
+<!DOCTYPE html>
+<html lang="fa">
+
+{% block body %}
+<div class="wrapper">
+    <!-- Start header -->
+    
+    <!-- End header -->
+    <!-- Start main-content -->
+    <main class="main-content dt-sl mb-3">
+        <div class="container main-container">
+            <div class="row">
+                <!-- Start Sidebar -->
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 sticky-sidebar">
+                    <div class="profile-sidebar dt-sl">
+                        <div class="dt-sl dt-sn border mb-3">
+                            <div class="profile-sidebar-header dt-sl">
+                                <div class="d-flex align-items-center">
+                                    <div class="profile-avatar">
+                                        <img src="{{Profile.profile_image.url}}" alt="">
+                                    </div>
+                                    <div class="profile-header-content mr-3 mt-2">
+                                        <span class="d-block profile-username">{{Profile.user.username}}</span>
+                                        <span class="d-block profile-phone">{{Profile.phone}}</span>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="profile-link mt-2 dt-sl">
+                                    <div class="row">
+                                        <div class="col-6 text-center">
+                                            <a href="{% url 'accounts:change_password'%}">
+                                                <i class="mdi mdi-lock-reset"></i>
+                                                <span class="d-block">تغییر رمز</span>
+                                            </a>
+                                        </div>
+                                        <div class="col-6 text-center">
+                                            <a href="{% url 'accounts:logout'%}">
+                                                <i class="mdi mdi-logout-variant"></i>
+                                                <span class="d-block">خروج از حساب</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dt-sl dt-sn mb-3 text-center">
+                            <a href="#">
+                                <img src="./assets/img/banner/sidebar-banner-3.jpg" class="img-fluid" alt="">
+                            </a>
+                        </div>
+                        <div class="dt-sl dt-sn border mb-3">
+                            <div class="profile-menu-section dt-sl">
+                                <div class="label-profile-menu mt-2 mb-2">
+                                    <span>حساب کاربری شما</span>
+                                </div>
+                                <div class="profile-menu">
+                                    <ul>
+                                        <li>
+                                            <a href="{% url 'accounts:profile' %}" class="active">
+                                                <i class="mdi mdi-account-circle-outline"></i>
+                                                پروفایل
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'accounts:history' %}">
+                                                <i class="mdi mdi-basket"></i>
+                                                همه سفارش ها
+                                            </a>
+                                        </li>
+                                        
+                                        <li>
+                                            <a href="{% url 'accounts:favourite' %}">
+                                                <i class="mdi mdi-heart-outline"></i>
+                                                لیست علاقمندی ها
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'accounts:profile_com' %}">
+                                                <i class="mdi mdi-glasses"></i>
+                                                نقد و نظرات
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'accounts:update' %}">
+                                                <i class="mdi mdi-account-edit-outline"></i>
+                                                اطلاعات شخصی
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Sidebar -->
+                <!-- Start Content -->
+                <div class="col-xl-9 col-lg-8 col-md-8 col-sm-12">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-12">
+                            <div class="px-3">
+                                <div
+                                    class="section-title text-sm-title title-wide mb-1 no-after-title-wide dt-sl mb-2">
+                                    <h2>اطلاعات شخصی</h2>
+                                </div>
+                                <div class="profile-section dt-sl">
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="label-info">
+                                                <span>نام:</span>
+                                            </div>
+                                            <div class="value-info">
+                                                <span>{{Profile.user.first_name}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="label-info">
+                                                <span> نام خانوادگی:</span>
+                                            </div>
+                                            <div class="value-info">
+                                                <span>{{Profile.user.last_name}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="label-info">
+                                                <span>پست الکترونیک:</span>
+                                            </div>
+                                            <div class="value-info">
+                                                <span>{{Profile.user.email}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="label-info">
+                                                <span>شماره تلفن همراه:</span>
+                                            </div>
+                                            <div class="value-info">
+                                                <span></span>{{Profile.phone}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="profile-section-link">
+                                        <a href="{% url 'accounts:update'%}" class="border-bottom-dt">
+                                            <i class="mdi mdi-account-edit-outline"></i>
+                                            ویرایش اطلاعات شخصی
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-12">
+                            <div class="px-3">
+                                <div
+                                    class="section-title text-sm-title title-wide mb-1 no-after-title-wide dt-sl mb-2">
+                                    <h2>لیست آخرین علاقه‌مندی‌ها</h2>
+                                </div>
+                                <div class="profile-section dt-sl">
+                                    <ul class="list-favorites">
+                                        {% for i in favourite %}
+                                        <li>
+                                            <a href="{%url 'home:detail' i.id %}">
+                                                <img src="{{i.image.url}}" alt="">
+                                                <span>{{i.name}}</span>
+                                            </a>
+                                            <a href="{% url 'home:favourite' i.id%}">
+                                                <button>
+                                                    <i class="mdi mdi-trash-can-outline"></i>
+                                                </button>
+                                            </a>
+                                            
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                    <div class="profile-section-link">
+                                        <a href="{% url 'accounts:favourite' %}" class="border-bottom-dt">
+                                            <i class="mdi mdi-square-edit-outline"></i>
+                                            مشاهده و ویرایش لیست مورد علاقه
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col-12">
+                            <div
+                                class="section-title text-sm-title title-wide mb-1 no-after-title-wide dt-sl mb-2 px-res-1">
+                                <h2>آخرین سفارش‌ها</h2>
+                            </div>
+                            <div class="dt-sl">
+                                <div class="table-responsive">
+                                    <table class="table table-order">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>شماره سفارش</th>
+                                                <th>تاریخ ثبت سفارش</th>
+                                                <th>مبلغ کل</th>
+                                                <th>عملیات پرداخت</th>
+                                                <th>جزییات</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            
+                                            {% for i in history %}
+                                            <tr>
+                                                <td>{{forloop.counter}}</td>
+                                                <td>{{i.order.code}}</td>
+                                                <td>{{i.order.create|jformat:' %d %B %Y '}}</td>
+                                                <td>{{i.order.total_to}}</td>
+                                                <td>{{i.order.paid}}</td>
+                                                <td class="details-link">
+                                                    <a href="#">
+                                                        <i class="mdi mdi-chevron-left"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                                                
+                                            
+
+                                            <tr>
+                                                <td class="link-to-orders" colspan="7"><a href="{% url 'accounts:history' %}">مشاهده لیست سفارش
+                                                        ها</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Content -->
+            </div>
+            <!-- Start Product-Slider -->
+            <section class="slider-section dt-sl mt-5 mb-5">
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <div class="section-title text-sm-title title-wide no-after-title-wide">
+                            <h2>محصولات پیشنهادی برای شما</h2>
+                            <a href="{% url 'home:product'%}">مشاهده همه</a>
+                        </div>
+                    </div>
+
+                    <!-- Start Product-Slider -->
+                    <div class="col-12 px-res-0">
+                        <div class="product-carousel carousel-lg owl-carousel owl-theme">
+                            
+                            {% for i in suggest  %}
+                            <div class="item">
+                                <div class="product-card mb-3">
+                                    <div class="product-head">
+                                        <div class="rating-stars">
+                                            <i class="mdi mdi-star{% if i.average < 1 %} active {% endif %} -o empty "></i>
+                                            <i class="mdi mdi-star{% if i.average < 2 %} active {% endif %} -o empty "></i>
+                                            <i class="mdi mdi-star{% if i.average < 3 %} active {% endif %} -o empty "></i>
+                                            <i class="mdi mdi-star{% if i.average < 4 %} active {% endif %} -o empty "></i>
+                                            <i class="mdi mdi-star{% if i.average < 5 %} active {% endif %} -o empty "></i>
+                                        </div>
+                                    </div>
+                                    <a class="product-thumb" href="{% url 'home:detail' i.id %}">
+                                        <img src="{{i.image.url}}" alt="Product Thumbnail">
+                                    </a>
+                                    <div class="product-card-body">
+                                        <h5 class="product-title">
+                                            <a href="shop-single.html"> {{i.name}}</a>
+                                        </h5>
+                                        <span class="product-price">{{i.total_price}} تومان</span>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                                
+                            
+                        </div>
+                    </div>
+                    <!-- End Product-Slider -->
+
+                </div>
+            </section>
+            <!-- End Product-Slider -->
+        </div>
+    </main>
+    <!-- End main-content -->
+    <!-- Start footer -->
+    <footer class="main-footer dt-sl">
+        <div class="back-to-top">
+            <a href="#"><span class="icon"><i class="mdi mdi-chevron-up"></i></span> <span>بازگشت به
+                    بالا</span></a>
+        </div>
+        <div class="container main-container">
+            <div class="footer-services">
+                <div class="row">
+                    <div class="service-item col">
+                        <a href="#" target="_blank">
+                            <img src="{% static 'assets/img/svg/delivery.svg'%}">
+                        </a>
+                        <p>تحویل اکسپرس</p>
+                    </div>
+                    <div class="service-item col">
+                        <a href="#" target="_blank">
+                            <img src="{% static 'assets/img/svg/contact-us.svg'%}">
+                        </a>
+                        <p>پشتیبانی 24 ساعته</p>
+                    </div>
+                    <div class="service-item col">
+                        <a href="#" target="_blank">
+                            <img src="{% static 'assets/img/svg/payment-terms.svg'%}">
+                        </a>
+                        <p>پرداخت درمحل</p>
+                    </div>
+                    <div class="service-item col">
+                        <a href="#" target="_blank">
+                            <img src="{% static 'assets/img/svg/return-policy.svg'%}">
+                        </a>
+                        <p>۷ روز ضمانت بازگشت</p>
+                    </div>
+                    <div class="service-item col">
+                        <a href="#" target="_blank">
+                            <img src="{% static 'assets/img/svg/origin-guarantee.svg'%}">
+                        </a>
+                        <p>ضمانت اصل بودن کالا</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-widgets">
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="widget-menu widget card">
+                            <header class="card-header">
+                                <h3 class="card-title">راهنمای خرید از تاپ کالا</h3>
+                            </header>
+                            <ul class="footer-menu">
+                                <li>
+                                    <a href="#">نحوه ثبت سفارش</a>
+                                </li>
+                                <li>
+                                    <a href="#">رویه ارسال سفارش</a>
+                                </li>
+                                <li>
+                                    <a href="#">شیوه‌های پرداخت</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="widget-menu widget card">
+                            <header class="card-header">
+                                <h3 class="card-title">خدمات مشتریان</h3>
+                            </header>
+                            <ul class="footer-menu">
+                                <li>
+                                    <a href="#">پاسخ به پرسش‌های متداول</a>
+                                </li>
+                                <li>
+                                    <a href="#">رویه‌های بازگرداندن کالا</a>
+                                </li>
+                                <li>
+                                    <a href="#">شرایط استفاده</a>
+                                </li>
+                                <li>
+                                    <a href="#">حریم خصوصی</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="widget-menu widget card">
+                            <header class="card-header">
+                                <h3 class="card-title">با تاپ کالا</h3>
+                            </header>
+                            <ul class="footer-menu">
+                                <li>
+                                    <a href="#">فروش در تاپ کالا</a>
+                                </li>
+                                <li>
+                                    <a href="#">همکاری با سازمان‌ها</a>
+                                </li>
+                                <li>
+                                    <a href="#">فرصت‌های شغلی</a>
+                                </li>
+                                <li>
+                                    <a href="#">تماس با تاپ کالا</a>
+                                </li>
+                                <li>
+                                    <a href="#">درباره تاپ کالا</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="newsletter">
+                            <p>از تخفیف‌ها و جدیدترین‌های فروشگاه باخبر شوید:</p>
+                            <form action="">
+                                <input type="email" class="form-control"
+                                    placeholder="آدرس ایمیل خود را وارد کنید...">
+                                <input type="submit" class="btn btn-primary" value="ارسال">
+                            </form>
+                        </div>
+                        <div class="socials">
+                            <p>ما را در شبکه های اجتماعی دنبال کنید.</p>
+                            <div class="footer-social">
+                                <ul class="text-center">
+                                    <li><a href="#"><i class="mdi mdi-instagram"></i></a></li>
+                                    <li><a href="#"><i class="mdi mdi-telegram"></i></a></li>
+                                    <li><a href="#"><i class="mdi mdi-facebook"></i></a></li>
+                                    <li><a href="#"><i class="mdi mdi-twitter"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="info">
+                <div class="row">
+                    <div class="col-12 text-right">
+                        <span>هفت روز هفته ، 24 ساعت شبانه‌روز پاسخگوی شما هستیم.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="description">
+            <div class="container main-container">
+                <div class="row">
+                    <div class="site-description col-12 col-lg-7">
+                        <h1 class="site-title">فروشگاه اینترنتی تاپ کالا، بررسی، انتخاب و خرید آنلاین</h1>
+                        <p>
+                            تاپ کالا به عنوان یکی از قدیمی‌ترین فروشگاه های اینترنتی با بیش از یک دهه تجربه، با
+                            پایبندی به سه اصل کلیدی، پرداخت در
+                            محل، 7 روز ضمانت بازگشت کالا و تضمین اصل‌بودن کالا، موفق شده تا همگام با فروشگاه‌های
+                            معتبر جهان، به بزرگ‌ترین فروشگاه
+                            اینترنتی ایران تبدیل شود. به محض ورود به تاپ کالا با یک سایت پر از کالا رو به رو
+                            می‌شوید! هر آنچه که نیاز دارید و به
+                            ذهن شما خطور می‌کند در اینجا پیدا خواهید کرد.
+                        </p>
+                    </div>
+                    <div class="symbol col-12 col-lg-5">
+                        <a href="#" target="_blank"><img src="{% static 'assets/img/symbol-01.png'%}"alt=""></a>
+                        <a href="#" target="_blank"><img src="{% static 'assets/img/symbol-02.png'%}" alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <div class="container main-container">
+                <p>
+                    استفاده از مطالب فروشگاه اینترنتی تاپ کالا فقط برای مقاصد غیرتجاری و با ذکر منبع بلامانع است.
+                    کلیه حقوق این سایت متعلق
+                    به شرکت نوآوران فن آوازه (فروشگاه آنلاین تاپ کالا) می‌باشد.
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!-- End footer -->
+</div>
+{% endblock body %}

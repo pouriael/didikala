@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% load static %}
+{% load jformat%}
+<!DOCTYPE html>
+<html lang="fa">
+{% block title%} code page{% endblock title%}
+
+{% block body %} 
+<div class="wrapper">
+
+       
+    <main class="main-content dt-sl mb-3">
+<div class="container main-container">
+        <div class="row">
+            <div class="col-xl-4 col-lg-5 col-md-7 col-12 mx-auto">
+                <div class="logo-area text-center mb-3">
+                    <a href="#"><img src="./assets/img/logo.png" class="img-fluid" alt="logo"></a>
+                </div>
+                <div class="auth-wrapper form-ui border pt-4">
+                    <div class="section-title title-wide mb-1 no-after-title-wide">
+                        <h2 class="font-weight-bold">تایید شماره</h2>
+                    </div>
+                    <div class="message-light">
+                        <a href="{% url 'accounts:reset' %}" class="btn-link-border">
+                            ویرایش شماره
+                        </a>
+                    </div>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="form-row-title">
+                            <h3>کد تایید را وارد کنید</h3>
+                        </div>
+                        <div class="form-row">
+                            <div class="numbers-verify">
+                                <div class="lines-number-input">
+                                    <input name="code" type="number" class="line-number" maxlength="5" >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row mt-3">
+                            <div class="d-flex align-items-center">
+                                <span>(</span>
+                                <p id="countdown-verify-end"></p>
+                                <span>)</span>
+                            </div>
+                        </div>
+                        <div class="form-row mt-3">
+                            <button type="submit" class="btn-primary-cm btn-with-icon mx-auto w-100">
+                                <i class="fad fa-arrow-right"></i>
+                                تایید و ادامه
+                            </button>
+                        </div>
+                    </form>
+                    <div class="form-footer mt-3">
+                        <div>
+                            <span class="font-weight-bold">کاربر جدید هستید؟</span>
+                            <a href="#" class="mr-3 mt-2">ثبت نام در دیدیکالا</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer class="mini-footer dt-sl">
+    <div class="container main-container">
+        <div class="row">
+            <div class="col-12">
+                <ul class="mini-footer-menu">
+                    <li><a href="#">درباره دیدیکالا</a></li>
+                    <li><a href="#">فرصت های شغلی</a></li>
+                    <li><a href="#">تماس با ما</a></li>
+                    <li><a href="#">همکاری با سازمان ها</a></li>
+                </ul>
+            </div>
+            <div class="col-12 mt-2 mb-3">
+                <div class="footer-light-text">
+                    استفاده از مطالب فروشگاه اینترنتی دیدیکالا فقط برای مقاصد غیرتجاری و با ذکر منبع بلامانع
+                    است. کلیه حقوق این سایت متعلق به (فروشگاه آنلاین دیدیکالا) می‌باشد.
+                </div>
+            </div>
+            <div class="col-12 text-center">
+                <div class="copy-right-mini-footer">
+                    Copyright © 2019 Didikala
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+
+{% endblock body %}
+

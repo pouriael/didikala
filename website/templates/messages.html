@@ -1,0 +1,19 @@
+{% if messages%}
+{% for msg in messages%}
+<div id="msg">
+    <h3 role="alert" {% if msg.tags %} class="alert alert-{{msg.tags}}" {% endif %}>{{msg}}</h3>
+</div>
+    
+    {% block script %}
+<script>
+    var message_ele = document.getElementById("msg");
+
+setTimeout(function(){ 
+   message_ele.style.display = "none"; 
+}, 3000);
+</script>
+
+    {% endblock script %}
+   
+{% endfor %}
+{% endif %}

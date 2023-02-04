@@ -1,0 +1,415 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block head %}
+{% endblock head %}
+{% load thumbnail %}
+{% block title%}
+    product
+{% endblock title%}
+
+{% block body%}
+<div class="wrapper">
+<main class="main-content dt-sl mb-3">
+  <div class="container main-container">
+      <div class="row">
+          <!-- Start Sidebar -->
+          <div class="col-lg-3 col-md-12 col-sm-12 sticky-sidebar filter-options-sidebar">
+              <div class="d-md-none">
+                  <div class="header-filter-options">
+                      <span>جستجوی پیشرفته <i class="fad fa-sliders-h"></i></span>
+                      <button class="btn-close-filter-sidebar"><i class="fal fa-times"></i></button>
+                  </div>
+              </div>
+              <div class="dt-sn dt-sn--box mb-3">
+                  <form action="">
+                      <div class="col-12">
+                          <div class="section-title text-sm-title title-wide mb-1 no-after-title-wide">
+                              <h2>فیلتر محصولات</h2>
+                          </div>
+                      </div>
+                      
+                      <div class="col-12 filter-product mb-3">
+                          <div class="accordion" id="accordionExample">
+                              
+                              <div class="card">
+                                  <div class="card-header" id="headingTwo">
+                                      <h2 class="mb-0">
+                                          <button class="btn btn-block text-right collapsed" type="button"
+                                              data-toggle="collapse" data-target="#collapseTwo"
+                                              aria-expanded="false" aria-controls="collapseTwo">
+                                              برند
+                                              <i class="mdi mdi-chevron-down"></i>
+                                          </button>
+                                      </h2>
+                                  </div>
+                                  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                      data-parent="#accordionExample">
+                                      <div class="card-body">
+                                          
+                                          <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input"
+                                            id="customCheck13">
+                                              <label
+                                                  for="customCheck8">{{filter.form.brand}}</label>
+                                          </div>
+    
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="card">
+                                  <div class="card-header" id="headingThree">
+                                      <h2 class="mb-0">
+                                          <button class="btn btn-block text-right collapsed" type="button"
+                                              data-toggle="collapse" data-target="#collapseThree"
+                                              aria-expanded="false" aria-controls="collapseThree">
+                                            سایز 
+                                              <i class="mdi mdi-chevron-down"></i>
+                                          </button>
+                                      </h2>
+                                  </div>
+                                  <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                      data-parent="#accordionExample">
+                                      <div class="card-body">
+                                          
+                                          <div class="custom-control custom-checkbox">
+                                              <input type="checkbox" class="custom-control-input"
+                                                  id="customCheck13">
+                                              <label for="customCheck13">{{filter.form.size}}</label>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="card">
+                                  <div class="card-header" id="headingFour">
+                                      <h2 class="mb-0">
+                                          <button class="btn btn-block text-right collapsed" type="button"
+                                              data-toggle="collapse" data-target="#collapseFour"
+                                              aria-expanded="false" aria-controls="collapseFour">
+                                              رنگها
+                                              <i class="mdi mdi-chevron-down"></i>
+                                          </button>
+                                      </h2>
+                                  </div>
+                                  <div id="collapseFour" class="collapse" aria-labelledby="headingFour"
+                                      data-parent="#accordionExample">
+                                      <div class="card-body">
+                                          
+                                          <div class="custom-control custom-checkbox">
+                                              <input type="checkbox" class="custom-control-input"
+                                                  id="customCheck18">
+                                              <label 
+                                                  for="customCheck18">{{filter.form.color}}</label>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-12 mb-4">
+                          <div class="section-title text-sm-title title-wide no-after-title-wide mb-1">
+                              <h2>فیلتر براساس قیمت :</h2>
+                          </div>
+                          <div class="mt-2 mb-2">
+                              <div id="slider-non-linear-step"></div>
+                          </div>
+                          <div class="mt-2 mb-2 text-center pt-2">
+                              <span>قیمت: </span>
+                              <input style ='background-color:#f7858d; border-radius:5px; color:aliceblue; border: none; margin:3px;'  min='{{min_price}}' max='{{min_price}}' step='5' value='{{min_price}}'  name='price_1'  oninput='this.parentNode.dataset.lbound=this.value;'>
+                              <input style ='background-color:#f7858d; border-radius:5px; color:aliceblue; border: none; margin:3px;'  min='{{min_price}}' max='{{max_price}}' step='5' value='{{max_price}}'  name='price_2' oninput='this.parentNode.dataset.ubound=this.value;'>
+                          </div>
+                      </div>
+                      <div style="display:none;">
+                        {{filter.form.price}}
+                        {{filter.form.favourite}}
+                        {{filter.form.discount}}
+                        {{filter.form.create}}
+                        {{filter.form.sell}}
+                        {% if 'search' in request.GET %}
+                        {{form}}
+                        {% endif %}
+                        
+                      </div>
+                      <div class="col-12">
+                          <button class="btn btn-info btn-block" type="submit">
+                              فیلتر
+                          </button>
+                      </div>
+                     
+                  </form>
+              </div>
+          </div>
+          <!-- End Sidebar -->
+          <!-- Start Content -->
+          <div class="col-lg-9 col-md-12 col-sm-12 search-card-res">
+              <div class="d-md-none">
+                  <button class="btn-filter-sidebar">
+                      جستجوی پیشرفته <i class="fad fa-sliders-h"></i>
+                  </button>
+              </div>
+              <div class="dt-sl dt-sn px-0 search-amazing-tab">
+                  <div class="ah-tab-wrapper dt-sl">
+                    <form action="">
+                      <div class="ah-tab dt-sl">
+                          <input style='background-color:#f7858d; border-radius:5px; color:aliceblue; border: none; padding:5px; margin: 3px;' type="submit" name="sell" data-ah-tab-active="true" value="پر فروش ترین">
+                          <input style='background-color:#f7858d; border-radius:5px; color:aliceblue; border: none; padding:5px; margin: 3px;' type="submit" name="discount" data-ah-tab-active="true" value="بیشترین تخفیف" >
+                          <input style='background-color:#f7858d; border-radius:5px; color:aliceblue; border: none; padding:5px; margin: 3px;' type="submit" name="create" data-ah-tab-active="true" value="قدیمی ترین">
+                          <input style='background-color:#f7858d; border-radius:5px; color:aliceblue; border: none; padding:5px; margin: 3px;' type="submit" name="create" data-ah-tab-active="true" value="جدید ترین" >
+                          <input style='background-color:#f7858d; border-radius:5px; color:aliceblue; border: none; padding:5px; margin: 3px;' type="submit" name="price" data-ah-tab-active="true" value="گران ترین">
+                          <input style='background-color:#f7858d; border-radius:5px; color:aliceblue; border: none; padding:5px; margin: 3px;' type="submit" name="price" data-ah-tab-active="true" value="ارزان ترین">
+                          <input style='background-color:#f7858d; border-radius:5px; color:aliceblue; border: none; padding:5px; margin: 3px;' type="submit" name="favourite" data-ah-tab-active="true" value="محبوب ترین" >
+                          <div style="display:none;">
+                            {{filter.form.brand}}
+                            {{filter.form.color}}
+                            {{filter.form.size}}
+                            {{filter.form.price_1}}
+                            {{filter.form.price_2}}
+                            {% if 'search' in request.GET %}
+                            {{form}}
+                            {% endif %}
+                          </div>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="ah-tab-content-wrapper dt-sl px-res-0">
+                      <div class="ah-tab-content dt-sl" data-ah-tab-active="true">
+                          <div class="row mb-3 mx-0 px-res-0">
+                            
+                            {% for i in products %}
+                            <div class="col-lg-3 col-md-4 col-sm-6 col-12 px-10 mb-1 px-res-0">
+                                <div class="product-card mb-2 mx-res-0">
+                                    <div class="product-head">
+                                        <div class="rating-stars">
+                                            <i class="mdi mdi-star{% if i.average < 1 %} active {% endif %} -o empty "></i>
+                                            <i class="mdi mdi-star{% if i.average < 2 %} active {% endif %} -o empty "></i>
+                                            <i class="mdi mdi-star{% if i.average < 3 %} active {% endif %} -o empty "></i>
+                                            <i class="mdi mdi-star{% if i.average < 4 %} active {% endif %} -o empty "></i>
+                                            <i class="mdi mdi-star{% if i.average < 5 %} active {% endif %} -o empty "></i>
+                                        </div>
+                                    </div>
+                                    {% if i.discount %}
+                                        <div class="discount">
+                                            <span>{{i.discount}}%</span>
+                                        </div>
+                                    {% endif %}
+                                    <a class="product-thumb" href="{% url 'home:detail' i.id %}">
+                                        <img src="{{i.image.url}}" alt="Product Thumbnail">
+                                    </a>
+                                    <div class="product-card-body">
+                                        <h5 class="product-title">
+                                            <a href="shop-single.html">{{i.name}}</a>
+                                        </h5>
+                                        <div style='display:flex;justify-content: space-between;'>
+                                            <span class="product-price" style="text-decoration:line-through; color:#ef394e; cursor: pointer;">{{i.unit_price}} تومان</span>
+                                            <span class="product-price" style="color:green; cursor: pointer;">{{i.total_price}} تومان</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                                
+                              
+                              
+                          </div>
+                          <div class="row">
+                              <div class="col-12">
+                                <div class="pagination">
+                                    {% if products.has_previous  %}
+                                        <a class="prev" href="?page={{products.previous_page_number}}" aria-label="Previous">
+                                            <i class="mdi mdi-chevron-double-right"></i>
+                                        </a>
+                                        <a class="prev" href="?page={{products.previous_page_number}}">{{products.previous_page_number}}</a>      
+                                    {% endif %}
+                                        <a class="{% if page_num == page_num%} active-page{% endif %}" href="?page={{products.number}}">{{products.number}}</a>
+                                    {% if products.has_next  %}
+                                        <a class="prev" href="?page={{products.next_page_number}}">{{products.next_page_number}}</a>
+                                        <a class="prev" href="?page={{products.next_page_number}}" aria-label="next">
+                                            <i class="mdi mdi-chevron-double-left"></i>
+                                        </a>   
+                                    {% endif %}
+                                
+                        </div>
+                              </div>
+                          </div>
+                      </div>
+                     
+                  </div>
+              </div>
+          </div>
+          <!-- End Content -->
+      </div>
+  </div>
+</main>
+  
+<footer class="main-footer dt-sl">
+  <div class="back-to-top">
+      <a href="#"><span class="icon"><i class="mdi mdi-chevron-up"></i></span> <span>بازگشت به
+              بالا</span></a>
+  </div>
+  <div class="container main-container">
+      <div class="footer-services">
+          <div class="row">
+              <div class="service-item col">
+                  <a href="#" target="_blank">
+                      <img src="{% static 'assets/img/svg/delivery.svg'%}">
+                  </a>
+                  <p>تحویل اکسپرس</p>
+              </div>
+              <div class="service-item col">
+                  <a href="#" target="_blank">
+                      <img src="{% static 'assets/img/svg/contact-us.svg'%}">
+                  </a>
+                  <p>پشتیبانی 24 ساعته</p>
+              </div>
+              <div class="service-item col">
+                  <a href="#" target="_blank">
+                      <img src="{% static 'assets/img/svg/payment-terms.svg'%}">
+                  </a>
+                  <p>پرداخت درمحل</p>
+              </div>
+              <div class="service-item col">
+                  <a href="#" target="_blank">
+                      <img src="{% static 'assets/img/svg/return-policy.svg'%}">
+                  </a>
+                  <p>۷ روز ضمانت بازگشت</p>
+              </div>
+              <div class="service-item col">
+                  <a href="#" target="_blank">
+                      <img src="{% static 'assets/img/svg/origin-guarantee.svg'%}">
+                  </a>
+                  <p>ضمانت اصل بودن کالا</p>
+              </div>
+          </div>
+      </div>
+      <div class="footer-widgets">
+          <div class="row">
+              <div class="col-12 col-md-6 col-lg-3">
+                  <div class="widget-menu widget card">
+                      <header class="card-header">
+                          <h3 class="card-title">راهنمای خرید از تاپ کالا</h3>
+                      </header>
+                      <ul class="footer-menu">
+                          <li>
+                              <a href="#">نحوه ثبت سفارش</a>
+                          </li>
+                          <li>
+                              <a href="#">رویه ارسال سفارش</a>
+                          </li>
+                          <li>
+                              <a href="#">شیوه‌های پرداخت</a>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-3">
+                  <div class="widget-menu widget card">
+                      <header class="card-header">
+                          <h3 class="card-title">خدمات مشتریان</h3>
+                      </header>
+                      <ul class="footer-menu">
+                          <li>
+                              <a href="#">پاسخ به پرسش‌های متداول</a>
+                          </li>
+                          <li>
+                              <a href="#">رویه‌های بازگرداندن کالا</a>
+                          </li>
+                          <li>
+                              <a href="#">شرایط استفاده</a>
+                          </li>
+                          <li>
+                              <a href="#">حریم خصوصی</a>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-3">
+                  <div class="widget-menu widget card">
+                      <header class="card-header">
+                          <h3 class="card-title">با تاپ کالا</h3>
+                      </header>
+                      <ul class="footer-menu">
+                          <li>
+                              <a href="#">فروش در تاپ کالا</a>
+                          </li>
+                          <li>
+                              <a href="#">همکاری با سازمان‌ها</a>
+                          </li>
+                          <li>
+                              <a href="#">فرصت‌های شغلی</a>
+                          </li>
+                          <li>
+                              <a href="#">تماس با تاپ کالا</a>
+                          </li>
+                          <li>
+                              <a href="#">درباره تاپ کالا</a>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-3">
+                  <div class="newsletter">
+                      <p>از تخفیف‌ها و جدیدترین‌های فروشگاه باخبر شوید:</p>
+                      <form action="">
+                          <input type="email" class="form-control"
+                              placeholder="آدرس ایمیل خود را وارد کنید...">
+                          <input type="submit" class="btn btn-primary" value="ارسال">
+                      </form>
+                  </div>
+                  <div class="socials">
+                      <p>ما را در شبکه های اجتماعی دنبال کنید.</p>
+                      <div class="footer-social">
+                          <ul class="text-center">
+                              <li><a href="#"><i class="mdi mdi-instagram"></i></a></li>
+                              <li><a href="#"><i class="mdi mdi-telegram"></i></a></li>
+                              <li><a href="#"><i class="mdi mdi-facebook"></i></a></li>
+                              <li><a href="#"><i class="mdi mdi-twitter"></i></a></li>
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="info">
+          <div class="row">
+              <div class="col-12 text-right">
+                  <span>هفت روز هفته ، 24 ساعت شبانه‌روز پاسخگوی شما هستیم.</span>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="description">
+      <div class="container main-container">
+          <div class="row">
+              <div class="site-description col-12 col-lg-7">
+                  <h1 class="site-title">فروشگاه اینترنتی تاپ کالا، بررسی، انتخاب و خرید آنلاین</h1>
+                  <p>
+                      تاپ کالا به عنوان یکی از قدیمی‌ترین فروشگاه های اینترنتی با بیش از یک دهه تجربه، با
+                      پایبندی به سه اصل کلیدی، پرداخت در
+                      محل، 7 روز ضمانت بازگشت کالا و تضمین اصل‌بودن کالا، موفق شده تا همگام با فروشگاه‌های
+                      معتبر جهان، به بزرگ‌ترین فروشگاه
+                      اینترنتی ایران تبدیل شود. به محض ورود به تاپ کالا با یک سایت پر از کالا رو به رو
+                      می‌شوید! هر آنچه که نیاز دارید و به
+                      ذهن شما خطور می‌کند در اینجا پیدا خواهید کرد.
+                  </p>
+              </div>
+              <div class="symbol col-12 col-lg-5">
+                  <a href="#" target="_blank"><img src="{% static 'assets/img/symbol-01.png'%}"alt=""></a>
+                  <a href="#" target="_blank"><img src="{% static 'assets/img/symbol-02.png'%}" alt=""></a>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="copyright">
+      <div class="container main-container">
+          <p>
+              استفاده از مطالب فروشگاه اینترنتی تاپ کالا فقط برای مقاصد غیرتجاری و با ذکر منبع بلامانع است.
+              کلیه حقوق این سایت متعلق
+              به شرکت نوآوران فن آوازه (فروشگاه آنلاین تاپ کالا) می‌باشد.
+          </p>
+      </div>
+  </div>
+</footer>
+</div>
+
+{% endblock body%}
+
